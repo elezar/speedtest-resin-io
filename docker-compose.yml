@@ -28,3 +28,10 @@ services:
       driver: fluentd
       options:
         tag: "speedtest.telecolumbus"
+    command: |
+        bash -c "
+          while true; do
+            speedtest --json
+            sleep 300
+          done
+        "
