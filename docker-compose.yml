@@ -7,8 +7,16 @@ services:
     volumes:
       - 'resin-data:/data'
     command: |
+      /bin/bash -c "
       while true; do
         date >> /data/helloworld.txt
-        echo "Sleeping"
+        echo \"Sleeping\"
         sleep 1
-      done
+      done"
+  # fluentd:
+  #   build: ./fluentd
+  #   expose:
+  #     - 24224
+  #     - 5140
+  #   volumes:
+  #     - 'resin-data:/data'
