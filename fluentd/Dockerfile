@@ -9,7 +9,6 @@ RUN apk add --update --virtual .build-deps \
  && sudo -u fluent gem install \
         fluent-plugin-out-http \
         fluent-plugin-bufferize \
-
  && sudo -u fluent gem sources --clear-all \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \

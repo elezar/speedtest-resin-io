@@ -1,9 +1,13 @@
 version: '2'
+volumes:
+    resin-data:
 services:
   fluentd:
     build: ./fluentd
     expose:
       - 24224
+    volumes:
+      - 'resin-data:/data'
   speedtest:
     build: ./speedtest
     depends_on:
