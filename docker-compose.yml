@@ -2,17 +2,9 @@ version: '2'
 volumes:
     resin-data:
 services:
-  fluentd:
-    build: ./fluentd
-    expose:
-      - 24224
+  helloworld:
+    image: resin/raspberrypi3-python:slim
     volumes:
       - 'resin-data:/data'
-  speedtest:
-    build: ./speedtest
-    depends_on:
-      - fluentd
-    # logging:
-    #   driver: fluentd
-    #   options:
-    #     tag: speedtest.telecolumbus
+    command: |
+      /bin/bash -c "while ; echo \"Sleeping\"; sleep 1000; done"
