@@ -7,7 +7,7 @@ services:
     volumes:
       - 'resin-data:/output_logs'
     environment:
-      - FLUENTD_OPT: "-v"
+      - FLUENTD_OPT="-v"
   speedtest:
     build: ./speedtest
     depends_on:
