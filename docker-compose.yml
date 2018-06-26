@@ -11,12 +11,12 @@ services:
       while true; do
         date >> /data/helloworld.txt
         echo \"Sleeping\"
-        sleep 1
+        sleep 60
       done"
-  # fluentd:
-  #   build: ./fluentd
-  #   expose:
-  #     - 24224
-  #     - 5140
-  #   volumes:
-  #     - 'resin-data:/data'
+  fluentd:
+    build: ./fluentd
+    expose:
+      - 24224
+      - 5140
+    volumes:
+      - 'resin-data:/data'
