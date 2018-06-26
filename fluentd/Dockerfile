@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v0.14.14-armhf-onbuild
+FROM elezar/fluentd:v0.14.14-armhf-onbuild
 MAINTAINER Evan Lezar <evanlezar@gmail.com>
 
 USER root
