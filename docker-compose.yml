@@ -4,8 +4,6 @@ services:
     build: ./fluentd
     expose:
       - 24224
-    environment:
-      - FLUENTD_OPT="-v"
   speedtest:
     build: ./speedtest
     depends_on:
