@@ -2,17 +2,17 @@ version: '2'
 volumes:
     resin-data:
 services:
-  helloworld:
-    image: resin/raspberrypi3-python:slim
-    volumes:
-      - 'resin-data:/data'
-    command: |
-      /bin/bash -c "
-      while true; do
-        date >> /data/helloworld.txt
-        echo \"Sleeping\"
-        sleep 60
-      done"
+  # helloworld:
+  #   image: resin/raspberrypi3-python:slim
+  #   volumes:
+  #     - 'resin-data:/data'
+  #   command: |
+  #     /bin/bash -c "
+  #     while true; do
+  #       date >> /data/helloworld.txt
+  #       echo \"Sleeping\"
+  #       sleep 60
+  #     done"
   fluentd:
     build: ./fluentd
     expose:
