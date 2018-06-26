@@ -4,8 +4,6 @@ services:
     build: ./fluentd
     expose:
       - 24224
-    volumes:
-      - 'resin-data:/output_logs'
     environment:
       - FLUENTD_OPT="-v"
   speedtest:
