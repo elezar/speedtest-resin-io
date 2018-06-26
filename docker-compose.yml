@@ -7,4 +7,4 @@ services:
     volumes:
       - 'resin-data:/data'
     command: |
-      /bin/bash -c "while ; echo \"Sleeping\"; sleep 1000; done"
+      /bin/bash -c "while ; do echo \"Sleeping\"; sleep 1000; done"
