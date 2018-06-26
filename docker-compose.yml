@@ -1,0 +1,10 @@
+version: '2'
+services:
+  fluentd:
+    build: ./fluentd
+    expose:
+      - 24224
+  speedtest:
+    build: ./speedtest
+    depends_on:
+      - fluentd
