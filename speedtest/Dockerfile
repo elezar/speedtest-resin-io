@@ -1,4 +1,4 @@
-FROM resin/raspberrypi3-python:3.6.5-slim
+FROM resin/raspberrypi3-python:3.5-slim
 MAINTAINER evanlezar@gmail.com
 
 RUN pip install --no-cache-dir --upgrade \
