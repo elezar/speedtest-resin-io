@@ -70,7 +70,7 @@ def sanitize(hostname: str) -> str:
 
 
 def get_connection_id(args_id: str) -> str:
-    if args_id:
+    if args_id and args_id.lower() != "auto":
         return sanitize(args_id)
 
     results, _ = run_speedtest()
