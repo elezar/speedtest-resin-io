@@ -3,6 +3,7 @@ MAINTAINER evanlezar@gmail.com
 
 RUN pip install --no-cache-dir --upgrade \
         pip \
-        speedtest-cli
+        speedtest-cli \
+        fluent-logger
 
 CMD ["speedtest", "--json"]
