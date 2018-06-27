@@ -4,6 +4,7 @@ LABEL maintainer evanlezar@gmail.com
 RUN pip install --no-cache-dir --upgrade \
         pip
 
+RUN mkdir -p /opt/speedtest
 WORKDIR /opt/speedtest
 
 COPY requirements.txt /opt/speedtest/
