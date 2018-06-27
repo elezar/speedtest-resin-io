@@ -6,10 +6,10 @@ RUN pip install --no-cache-dir --upgrade \
 
 WORKDIR /opt/speedtest
 
-COPY requirements.txt /opt/speedtest
+COPY requirements.txt /opt/speedtest/
 RUN pip install -r requirements.txt && rm requirements.txt
 
-COPY driver.py /opt/speedtest
+COPY driver.py /opt/speedtest/
 
 ENV TEST_INTERVAL_SECONDS=300
 ENV FLUENT_HOSTNAME=localhost
