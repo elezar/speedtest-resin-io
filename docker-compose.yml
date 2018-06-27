@@ -4,7 +4,6 @@ volumes:
 services:
   fluentd:
     build: ./fluentd
-    hostname: fluentd-service
     expose:
       - 24224
     volumes:
@@ -15,6 +14,6 @@ services:
       - fluentd
     environment:
       - TEST_INTERVAL_SECONDS=300
-      - CONNECTION_ID=${RESIN_DEVICE_NAME_AT_INIT}
-      - FLUENT_HOSTNAME="fluentd-service"
+      - CONNECTION_ID="${RESIN_DEVICE_NAME_AT_INIT}"
+      - FLUENT_HOSTNAME="fluentd"
       - FLUENT_PORT=24224
