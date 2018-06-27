@@ -1,9 +1,18 @@
 FROM resin/raspberrypi3-python:3.5-slim
-MAINTAINER evanlezar@gmail.com
+LABEL maintainer evanlezar@gmail.com
 
 RUN pip install --no-cache-dir --upgrade \
-        pip \
-        speedtest-cli \
-        fluent-logger
+        pip
 
-CMD ["speedtest", "--json"]
+WORKDIR /opt/speedtest
+
+COPY requirements.txt /opt/speedtest
+RUN pip install -r requirements.txt && rm requirements.txt
+
+COPY driver.py /opt/speedtest
+
+ENV TEST_INTERVAL_SECONDS=300
+ENV FLUENT_HOSTNAME=localhost
+ENV FLUENT_PORT=24224
+
+CMD ["/opt/speedtest/driver.py", "--interval", ${TEST_INTERVAL_SECONDS}, "--fluent-host", ${FLUENT_HOSTNAME}}, "--fluent-port", ${FLUENT_PORT}}]
