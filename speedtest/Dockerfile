@@ -18,4 +18,4 @@ ENV FLUENT_PORT=24224
 ENV CONNECTION_ID hostname
 
 
-CMD /opt/speedtest/driver.py --interval ${TEST_INTERVAL_SECONDS} --fluent-host ${FLUENT_HOSTNAME} --fluent-port ${FLUENT_PORT} --connection-id ${CONNECTION_ID}
+CMD python3 /opt/speedtest/driver.py --interval ${TEST_INTERVAL_SECONDS} --fluent-host ${FLUENT_HOSTNAME} --fluent-port ${FLUENT_PORT} --connection-id ${CONNECTION_ID}
