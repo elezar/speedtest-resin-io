@@ -14,5 +14,7 @@ COPY driver.py /opt/speedtest
 ENV TEST_INTERVAL_SECONDS=300
 ENV FLUENT_HOSTNAME=localhost
 ENV FLUENT_PORT=24224
+ENV CONNECTION_ID hostname
 
-CMD ["/opt/speedtest/driver.py", "--interval", ${TEST_INTERVAL_SECONDS}, "--fluent-host", ${FLUENT_HOSTNAME}}, "--fluent-port", ${FLUENT_PORT}}]
+
+CMD ["/opt/speedtest/driver.py", "--interval", ${TEST_INTERVAL_SECONDS}, "--fluent-host", ${FLUENT_HOSTNAME}, "--fluent-port", ${FLUENT_PORT}, "--connection-id", ${CONNECTION_ID}]
