@@ -86,6 +86,8 @@ def get_connection_id(args_id: str) -> str:
 def main():
     args = parse_args()
 
+    logger.info("Args: %s", args)
+
     connection_id = get_connection_id(args.connection_id)
     logger.info("Using connection ID: %s", connection_id)
 
