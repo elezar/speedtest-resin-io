@@ -1,4 +1,4 @@
-FROM elezar/fluentd:v0.14.14-armhf-onbuild
+FROM elezar/fluentd:v1.2.2-armhf-onbuild
 LABEL maintainer Evan Lezar <evanlezar@gmail.com>
 
 USER root
