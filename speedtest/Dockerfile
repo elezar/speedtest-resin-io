@@ -1,7 +1,6 @@
 FROM resin/armhf-alpine:3.7
 LABEL maintainer evanlezar@gmail.com
 
-RUN [ "cross-build-start" ]
 RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
@@ -24,6 +23,3 @@ ENV FLUENT_PORT=24224
 ENV CONNECTION_ID auto
 
 CMD python3 /opt/speedtest/driver.py --interval ${TEST_INTERVAL_SECONDS} --fluent-host ${FLUENT_HOSTNAME} --fluent-port ${FLUENT_PORT} --connection-id ${CONNECTION_ID}
-
-RUN [ "cross-build-end" ]
-
