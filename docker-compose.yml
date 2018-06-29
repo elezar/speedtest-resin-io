@@ -4,6 +4,7 @@ volumes:
 services:
   fluentd:
     build: ./fluentd
+    hostname: fluentd
     expose:
       - 24224
     volumes:
