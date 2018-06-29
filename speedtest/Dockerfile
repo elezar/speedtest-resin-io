@@ -4,7 +4,6 @@ LABEL maintainer evanlezar@gmail.com
 RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
-        py-pip3 \
         python3 \
  && rm -rf /var/cache/apk/* \
  && rm -rf /tmp/* /var/tmp/* \
