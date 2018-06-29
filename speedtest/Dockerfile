@@ -4,18 +4,18 @@ LABEL maintainer evanlezar@gmail.com
 RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
-        py-pip \
+        py-pip3 \
         python3 \
  && rm -rf /var/cache/apk/* \
  && rm -rf /tmp/* /var/tmp/* \
- && pip install --no-cache-dir --upgrade \
+ && pip3 install --no-cache-dir --upgrade \
         pip
 
 RUN mkdir -p /opt/speedtest
 WORKDIR /opt/speedtest
 
 COPY requirements.txt /opt/speedtest/
-RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt && rm requirements.txt
 COPY driver.py /opt/speedtest/
 
 ENV TEST_INTERVAL_SECONDS=300
