@@ -5,6 +5,7 @@ RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
         py-pip \
+        python3 \
  && rm -rf /var/cache/apk/* \
  && rm -rf /tmp/* /var/tmp/* \
  && pip install --no-cache-dir --upgrade \
