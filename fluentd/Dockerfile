@@ -1,5 +1,5 @@
 FROM elezar/fluentd:v0.14.14-armhf-onbuild
-MAINTAINER Evan Lezar <evanlezar@gmail.com>
+LABEL maintainer Evan Lezar <evanlezar@gmail.com>
 
 USER root
 
@@ -12,4 +12,4 @@ RUN apk add --update --virtual .build-deps \
  && gem sources --clear-all \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \
-           /home/fluent/.gem/ruby/2.3.0/cache/*.gem
+           /home/fluent/.gem/ruby/*/cache/*.gem
