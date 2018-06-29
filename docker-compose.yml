@@ -4,7 +4,6 @@ volumes:
 services:
   fluentd:
     build: ./fluentd
-    hostname: fluentd
     expose:
       - 24224
     volumes:
@@ -18,3 +17,5 @@ services:
       - CONNECTION_ID
       - FLUENT_HOSTNAME="fluentd"
       - FLUENT_PORT=24224
+    links:
+      - fluentd:fluentd
