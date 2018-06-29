@@ -15,7 +15,7 @@ services:
     environment:
       - TEST_INTERVAL_SECONDS=300
       - CONNECTION_ID
-      - FLUENT_HOSTNAME="fluentd"
+      - FLUENT_HOSTNAME=fluentd
       - FLUENT_PORT=24224
     links:
       - fluentd:fluentd
