@@ -38,11 +38,30 @@ def run_speedtest() -> (typing.Dict, int):
         return {}, 0
 
 
-def loop(fs: sender.FluentSender, connection_id: str, interval: int):
+def clean_results(results: typing.Dict, verbose: bool) -> typing.Dict:
+    if verbose:
+        return results
+
+    key_blacklist = ["client", "server"]
+
+    filtered_results = {}
+    for k, v in results.items():
+        if k in key_blacklist:
+            continue
+        filtered_results[k] = v
+
+    if "client" in results and "isp" in results["client"]:
+        filtered_results["isp"] = results["client"]["isp"]
+
+    return filtered_results
+
+
+def loop(fs: sender.FluentSender, connection_id: str, interval: int, verbose: bool):
     while True:
         results, timestamp = run_speedtest()
         if results:
-            if not fs.emit_with_time(connection_id, timestamp, results):
+
+            if not fs.emit_with_time(connection_id, timestamp, clean_results(results, verbose)):
                 logger.error("fluent error: %s", fs.last_error)
                 fs.clear_last_error()
 
@@ -58,7 +77,8 @@ def parse_args():
                        help="The hostname where the fluentd service is running")
     parser.add_argument("--fluent-port", type=int, default=24224,
                        help="The port where the fluentd service is running")
-
+    parser.add_argument("--verbose", action="store_true",
+                        help="Log all output from the speedtest command")
     parser.add_argument("--connection-id", type=str,
                         help="An ID to indentify the connection being tested")
 
@@ -75,7 +95,7 @@ def get_connection_id(args_id: str) -> str:
 
     results, _ = run_speedtest()
 
-    isp_or_hostname = results["server"].get("isp") if "server" in results else None
+    isp_or_hostname = results["client"].get("isp") if "server" in results else None
 
     if not isp_or_hostname:
         isp_or_hostname = socket.gethostname()
@@ -92,7 +112,7 @@ def main():
     logger.info("Using connection ID: %s", connection_id)
 
     with sender.FluentSender("speedtest", host=args.fluent_host, port=args.fluent_port) as fs:
-        loop(fs, connection_id, args.interval)
+        loop(fs, connection_id, args.interval, args.verbose)
 
 
 if __name__ == "__main__":
