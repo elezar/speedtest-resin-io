@@ -5,16 +5,16 @@ RUN apk update \
  && apk upgrade \
  && apk add --no-cache \
         python3 \
- && rm -rf /var/cache/apk/* \
- && rm -rf /tmp/* /var/tmp/* \
  && pip3 install --no-cache-dir --upgrade \
-        pip
+        pip \
+ && pip3 install --no-cache-dir --upgrade \
+        fluent-logger \
+        speedtest-cli \
+ && rm -rf /var/cache/* \
+ && rm -rf /root/.cache/*
 
 RUN mkdir -p /opt/speedtest
 WORKDIR /opt/speedtest
-
-COPY requirements.txt /opt/speedtest/
-RUN pip3 install --no-cache-dir -r requirements.txt && rm requirements.txt
 COPY driver.py /opt/speedtest/
 
 ENV TEST_INTERVAL_SECONDS=300
